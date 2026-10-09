@@ -1,0 +1,15 @@
+{
+  "name": "02-openrouter-api",
+  "version": "1.0.0",
+  "description": "Unified multi-model AI assistant using OpenRouter and OpenAI SDK",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["openrouter", "openai-sdk", "ai", "cli", "terminal-agent"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "openai": "^7.31.0"
+  }
+}
