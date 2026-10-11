@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "list": "node index.js --list"
+    "list": "node index.js --list",
+    "check": "node --check index.js && node --check src/router.js && node --check src/models.js"
   },
   "keywords": [
     "openrouter",

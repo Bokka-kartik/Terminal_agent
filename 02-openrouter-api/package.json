@@ -4,7 +4,8 @@
   "description": "Unified multi-model AI assistant using OpenRouter and OpenAI SDK",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "check": "node --check index.js"
   },
   "keywords": ["openrouter", "openai-sdk", "ai", "cli", "terminal-agent"],
   "author": "",
