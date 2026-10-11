@@ -26,17 +26,19 @@ Each project folder has its own dependencies and configuration:
 # Project 1: Multi-Vendor SDKs
 cd 01-multi-vendor-api
 npm install
-node gemini.js "Your prompt here"
+node index.js
 
 # Project 2: OpenRouter Gateway
 cd 02-openrouter-api
 npm install
-node index.js --model=deepseek "Your prompt here"
+node index.js
 
 # Project 3: Model selection and routing
 cd ../03-model-routing
 npm install
-node index.js --route=fast "Your prompt here"
+node index.js
 ```
+
+Each app greets you and asks what you need help with. You can also pass a prompt as a command-line argument.
 
 Refer to the individual `README.md` inside each subfolder for detailed setup instructions.

@@ -1,4 +1,5 @@
 const OpenAI = require('openai');
+const { getPrompt } = require('./prompt.js');
 
 // 1. Load variables from .env (Node 22+ native)
 try {
@@ -18,7 +19,7 @@ if (!apiKey) {
 const openai = new OpenAI({ apiKey });
 
 async function main() {
-  const prompt = process.argv.slice(2).join(' ') || 'Explain SSH in simple terms.';
+  const prompt = await getPrompt();
   console.log(`🤖 [OpenAI GPT-4o] Prompt: "${prompt}"`);
   console.log('⏳ Contacting OpenAI API...\n');
 

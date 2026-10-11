@@ -52,8 +52,10 @@ node index.js --list
 
 #### Run with the Default Free Model (Llama 3.3 70B Free):
 ```bash
-node index.js "Explain Docker in simple terms"
+node index.js
 ```
+
+The terminal greets you and asks what you need help with. You can also pass the prompt as an argument, for example `node index.js "Explain Docker in simple terms"`.
 
 #### Run with Specific Model Shortcuts:
 ```bash

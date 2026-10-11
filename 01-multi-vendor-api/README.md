@@ -17,7 +17,7 @@ A lightweight, multi-vendor Node.js terminal app demonstrating how to connect to
 ## Features
 
 - **Multi-Vendor Support**: Dedicated, self-contained scripts for Gemini, Claude, and OpenAI.
-- **Dynamic CLI Prompts**: Pass prompts directly via command line arguments.
+- **Interactive prompts**: Run the app without arguments to get a welcome message and enter a prompt in the terminal, or pass a prompt directly.
 - **Zero-Dependency Env Loading**: Uses Node.js 22's native `process.loadEnvFile()` without third-party `dotenv` overhead.
 - **Error Diagnostics**: Detailed network/transport layer exception tracking (`error.cause`).
 - **Safe Secrets Handling**: Local `.gitignore` ensures credentials are never committed.
@@ -45,7 +45,15 @@ OPENAI_API_KEY=your_openai_key_here
 
 ### 3. Usage
 
-Run standalone scripts:
+Run the multi-vendor entry point and choose a provider (Gemini is the default):
+
+```bash
+node index.js
+node index.js --vendor=claude
+node index.js --vendor=openai
+```
+
+The terminal greets you and asks what you need. You can also pass a prompt directly. Run standalone scripts the same way:
 
 ```bash
 node gemini.js "What is Git in one sentence?"

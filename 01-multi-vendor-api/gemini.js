@@ -1,4 +1,5 @@
 const { GoogleGenAI } = require('@google/genai');
+const { getPrompt } = require('./prompt.js');
 
 // 1. Load variables from .env into process.env (Node 22+ native)
 try {
@@ -18,7 +19,7 @@ if (!apiKey) {
 const ai = new GoogleGenAI({ apiKey });
 
 async function main() {
-  const prompt = process.argv.slice(2).join(' ') || 'Explain SSH in simple terms.';
+  const prompt = await getPrompt();
   console.log(`🤖 [Google Gemini] Prompt: "${prompt}"`);
   console.log('⏳ Contacting Gemini API...\n');
 

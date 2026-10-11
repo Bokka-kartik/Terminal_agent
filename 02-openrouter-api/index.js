@@ -1,4 +1,6 @@
 const OpenAI = require("openai");
+const { createInterface } = require("node:readline/promises");
+const { stdin, stdout } = require("node:process");
 
 // 1. Load variables from .env into process.env (Node 22+ native)
 try {
@@ -61,7 +63,7 @@ if (!selectedModel) {
   selectedModel = MODEL_SHORTCUTS.nemotron;
 }
 
-const prompt = promptWords.join(" ").trim() || "Explain what an API is in simple terms.";
+const suppliedPrompt = promptWords.join(" ").trim();
 
 // 4. Initialize OpenAI Client configured with OpenRouter base URL
 const openai = new OpenAI({
@@ -74,6 +76,21 @@ const openai = new OpenAI({
 });
 
 async function main() {
+  let prompt = suppliedPrompt;
+  if (!prompt) {
+    console.log("\nHi! I'm your OpenRouter AI assistant.");
+    console.log("Ask a question, request an explanation, or describe a task.");
+    const terminal = createInterface({ input: stdin, output: stdout });
+    try {
+      while (!prompt) {
+        prompt = (await terminal.question("\nWhat can I help you with? ")).trim();
+        if (!prompt) console.log("Enter a question or task to get started.");
+      }
+    } finally {
+      terminal.close();
+    }
+  }
+
   console.log(`🌐 [OpenRouter] Model: "${selectedModel}"`);
   console.log(`💬 Prompt: "${prompt}"`);
   console.log("⏳ Generating response...\n");
