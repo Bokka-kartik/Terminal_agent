@@ -1,0 +1,22 @@
+{
+  "name": "03-model-routing",
+  "version": "1.0.0",
+  "description": "Learn model selection, automatic routing, and fallback with OpenRouter",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "list": "node index.js --list"
+  },
+  "keywords": [
+    "openrouter",
+    "model-routing",
+    "fallback",
+    "terminal-agent"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^18.0.7",
+    "openai": "^7.31.0"
+  }
+}
