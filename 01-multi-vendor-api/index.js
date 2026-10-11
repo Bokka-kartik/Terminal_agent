@@ -1,9 +1,5 @@
 // Main Entry Point - Multi-Vendor Terminal Agent
-// Usage:
-//   node index.js "Your prompt"
-//   node index.js --vendor=claude "Your prompt"
-//   node index.js --vendor=openai "Your prompt"
-//   node index.js --vendor=gemini "Your prompt"
+// Run without a prompt to be greeted and asked what you need help with.
 
 const args = process.argv.slice(2);
 let vendor = 'gemini';
@@ -17,21 +13,29 @@ for (const arg of args) {
   }
 }
 
-// Forward to the chosen vendor script
-process.argv = [process.argv[0], process.argv[1], ...promptArgs];
+async function main() {
+  const { getPrompt } = require('./prompt.js');
+  const prompt = await getPrompt(promptArgs);
+  process.argv = [process.argv[0], process.argv[1], prompt];
 
-switch (vendor) {
-  case 'claude':
-  case 'anthropic':
-    require('./claude.js');
-    break;
-  case 'openai':
-  case 'gpt':
-    require('./openai.js');
-    break;
-  case 'gemini':
-  case 'google':
-  default:
-    require('./gemini.js');
-    break;
+  switch (vendor) {
+    case 'claude':
+    case 'anthropic':
+      require('./claude.js');
+      break;
+    case 'openai':
+    case 'gpt':
+      require('./openai.js');
+      break;
+    case 'gemini':
+    case 'google':
+    default:
+      require('./gemini.js');
+      break;
+  }
 }
+
+main().catch((error) => {
+  console.error(`Could not read your prompt: ${error.message}`);
+  process.exitCode = 1;
+});

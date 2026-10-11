@@ -1,4 +1,5 @@
 const Anthropic = require('@anthropic-ai/sdk');
+const { getPrompt } = require('./prompt.js');
 
 // 1. Load variables from .env (Node 22+ native)
 try {
@@ -18,7 +19,7 @@ if (!apiKey) {
 const anthropic = new Anthropic({ apiKey });
 
 async function main() {
-  const prompt = process.argv.slice(2).join(' ') || 'Explain SSH in simple terms.';
+  const prompt = await getPrompt();
   console.log(`🤖 [Anthropic Claude] Prompt: "${prompt}"`);
   console.log('⏳ Contacting Claude API...\n');
 

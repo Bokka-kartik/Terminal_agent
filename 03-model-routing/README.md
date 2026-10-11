@@ -1,14 +1,14 @@
 # Project 3: Multiple Models and Routing
 
-Learn how to choose a model for a request and how to route automatically through an ordered list of fallback models.
+This milestone is being built in small steps. The current version keeps the working `openrouter/free` model and gives the terminal a friendly interactive prompt.
 
 ## What this project demonstrates
 
-- **Model selection:** choose a preset with `--model`, or pass a provider model ID.
-- **Named routes:** choose a route profile with `--route=fast`, `balanced`, or `capable`.
-- **Fallbacks:** if a request fails, the CLI tries the next model in that route.
+- **Interactive prompt:** start the app and type a question or task in the terminal.
+- **Separate responsibilities:** `src/models.js` stores the current model ID, and `src/router.js` sends the request to OpenRouter.
+- **Current model:** `openrouter/free`, so this starter does not intentionally select a paid model.
 
-The model IDs in `index.js` are examples. OpenRouter model availability, names, and pricing can change, so replace them with IDs currently available to your account before running requests. A fallback may also incur a different cost.
+Model availability and free-tier terms can change, so check the selected model in your OpenRouter account.
 
 ## Setup
 
@@ -25,21 +25,15 @@ OPENROUTER_API_KEY=your_openrouter_api_key_here
 ## Try it
 
 ```bash
-# Show presets and route profiles
-node index.js --list
+# Start an interactive terminal prompt
+node index.js
 
-# Use the fast route, then its fallback if the first model fails
-node index.js --route=fast "Explain DNS in simple terms"
-
-# Use a specific preset (single model, no fallback)
-node index.js --model=capable "Summarize the CAP theorem"
-
-# Use an OpenRouter model ID directly
-node index.js --model=provider/model-id "Explain what an API is"
+# Or provide the prompt directly
+node index.js "Explain what an API is"
 ```
+
+The terminal greets you and asks what you need help with. Enter a question or task and the current `openrouter/free` model will answer. You can also provide a prompt as an argument.
 
 ## How routing works
 
-Each route is an ordered array in `ROUTES` in `index.js`. The CLI tries each candidate in order and stops after the first successful response. The direct `--model` option bypasses route fallback, which is useful when you want a specific model.
-
-The starter treats any request error as a reason to try the next model. For a production router, consider retrying only transient errors (such as rate limits or provider failures), and handling invalid model IDs and authentication errors separately.
+The next step is to add model selection and routing rules in `src/router.js`, while keeping the model list in `src/models.js`.

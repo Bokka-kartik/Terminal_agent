@@ -97,11 +97,28 @@
 // });
 
 import "dotenv/config";
+import { createInterface } from "node:readline/promises";
+import { stdin, stdout } from "node:process";
 import { routePrompt } from "./src/router.js";
 
-const prompt = "Explain what an API is in simple terms.";
+const suppliedPrompt = process.argv.slice(2).join(" ").trim();
 
 async function main() {
+  let prompt = suppliedPrompt;
+  if (!prompt) {
+    console.log("\nHi! I'm your model-routing assistant.");
+    console.log("Ask a question, request an explanation, or describe a task.");
+    const terminal = createInterface({ input: stdin, output: stdout });
+    try {
+      while (!prompt) {
+        prompt = (await terminal.question("\nWhat can I help you with? ")).trim();
+        if (!prompt) console.log("Enter a question or task to get started.");
+      }
+    } finally {
+      terminal.close();
+    }
+  }
+
   try {
     console.log("Prompt:", prompt);
 
