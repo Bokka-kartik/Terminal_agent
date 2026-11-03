@@ -1,0 +1,1 @@
+Follow the instructions in AGENTS.md at the repo root. For feature work, read and follow .agents/feature-builder/AGENT.md.
