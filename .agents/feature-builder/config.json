@@ -1,0 +1,20 @@
+﻿{
+  "name": "feature-builder",
+  "displayName": "Feature Builder",
+  "description": "Vendor-agnostic end-to-end feature planner and builder",
+  "version": "1.0.0",
+  "llm_config": {
+    "temperature": 0.7,
+    "max_tokens": 8000,
+    "reasoning_level": "extended"
+  },
+  "behavior": {
+    "ask_before_build": true,
+    "identify_decision_points": true,
+    "offer_second_opinion": true,
+    "explore_codebase": true,
+    "validate_feasibility": true,
+    "include_testing": true,
+    "flag_edge_cases": true
+  }
+}
